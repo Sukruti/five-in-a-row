@@ -1,10 +1,11 @@
 import json
+import re
 
 from flask import Flask, render_template, request, redirect, url_for, session
 from flask_socketio import SocketIO, join_room, leave_room, emit
 
 from flask_session import Session
-from test import *
+from create_board import *
 
 app = Flask(__name__)
 app.debug = True
@@ -16,7 +17,7 @@ Session(app)
 socketio = SocketIO(app, cors="*", manage_session=False)
 
 op = play_board()
-turn = 0
+turn = 1
 players = []
 
 
@@ -62,28 +63,39 @@ def join(message):
 @socketio.on('text', namespace='/chat')
 def text(message):
     room = session.get('room')
-    print(message['msg'])
+    inp = (message['msg'])
     print(players)
     # FUnction gaming...
 
-    global op,  turn
-    x, y, ms = player_move(message['msg'], op,turn)
+    global op, turn
+    x, y, ms = player_move(message['msg'], op, turn)
     op = x
     turn = y
     test = display_board(op)
 
-    emit('message', {'msg': ms}, room=room)
+    if re.search('Player 2', ms):
+        ms = ms.replace('Player 2', players[1])
+
+    elif re.search('Player 1', ms):
+        ms = ms.replace('Player 1', players[0])
+
+    emit('message', {'msg': inp + ms}, room=room)
     emit('message', {'msg': test}, room=room)
 
-    if 'won' in ms :
-        op = play_board()
-        turn = 0
+    print('App turn : ', turn)
 
-    if players[0] == session.get('username'):
-        if 'full' not in ms:
-            emit('message', {'msg': 'Hey ' + players[1] + ' : Please select between 1 and 9 '}, room=room)
+    if turn % 2 == 0:
+        print(ms)
+
+        if ms.find('full') == -1:
+            emit('message', {'msg': 'Hey ' + players[0] + ' : Please select between 1 and 9 '}, room=room)
+        else:
+            emit('message', {'msg': 'Hey ' + players[0] + ' : Please select between 1 and 9 '}, room=room)
     else:
-        emit('message', {'msg': 'Hey ' + players[0] + ' : Please select between 1 and 9 '}, room=room)
+        if ms.find('full') == -1:
+            emit('message', {'msg': 'Hey ' + players[1] + ' : Please select between 1 and 9 '}, room=room)
+        else:
+            emit('message', {'msg': 'Hey ' + players[1] + ' : Please select between 1 and 9 '}, room=room)
 
 
 @socketio.on('left', namespace='/chat')

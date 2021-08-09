@@ -1,0 +1,16 @@
+dnspython==1.16.0
+pip==21.2.2
+Jinja2==3.0.1
+Werkzeug==2.0.1
+itsdangerous==2.0.1
+click==8.0.1
+numpy==1.21.1
+setuptools==57.4.0
+MarkupSafe==2.0.1
+chardet==4.0.0
+urllib3==1.26.6
+six==1.16.0
+cachelib==0.2.0
+eventlet==0.31.1
+greenlet==1.1.0
+Flask==1.1.2
