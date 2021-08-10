@@ -69,7 +69,10 @@ and start playing the game.
  * Diagonal Right :
    ![image](https://user-images.githubusercontent.com/6366237/128813455-5bcdf422-4a61-4bc2-9fd7-a4b73fa7b8d8.png)
 
+* Validation when Row is full :
+ ![image](https://user-images.githubusercontent.com/6366237/128815083-53d3b01b-e658-469c-842c-1e88d4f7b531.png)
 
+ 
 
 ## Technologies Used
 
