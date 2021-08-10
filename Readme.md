@@ -64,8 +64,8 @@ and start playing the game.
    ![image](https://user-images.githubusercontent.com/6366237/128813837-5ee960f5-12aa-4c3b-92fc-22bd4a5701ec.png)
 
  * Diagonal Left :
-   ![image](https://user-images.githubusercontent.com/6366237/128812275-2ea8ba41-7370-4687-a572-b0d93e17e78f.png)
-
+   ![image](https://user-images.githubusercontent.com/6366237/128814311-f0a8ec30-8a2b-45f9-bf19-9074909c4c9b.png)
+ 
  * Diagonal Right :
    ![image](https://user-images.githubusercontent.com/6366237/128813455-5bcdf422-4a61-4bc2-9fd7-a4b73fa7b8d8.png)
 
